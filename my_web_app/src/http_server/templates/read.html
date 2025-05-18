@@ -1,24 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="/static/style.css" />
-    <title>Messages</title>
-  </head>
-  <body>
-    <div class="container">
-      <h1>Saved Messages</h1>
-      <ul>
-        {% for message in messages %}
-        <li>
-          <strong>{{ message.username }}</strong> ({{ message.timestamp }}): {{
-          message.message }}
-        </li>
-        {% endfor %}
-      </ul>
-      <a href="/">Back to Home</a>
-    </div>
-  </body>
-</html>
+{% extends "base.html" %} {% block title %}Messages{% endblock %} {% block
+content %}
+<h1>Saved Messages</h1>
+{% if messages %}
+<ul class="list-group">
+  {% for timestamp, msg in messages.items() %}
+  <li class="list-group-item">
+    <strong>{{ timestamp }}</strong>: {{ msg.username }} - {{ msg.message }}
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No messages found.</p>
+{% endif %}
+<a href="/" class="btn btn-primary mt-3">Back to Home</a>
+{% endblock %}

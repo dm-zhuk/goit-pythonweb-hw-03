@@ -1,0 +1,10 @@
+services:
+  http-server:
+    build: . # Build from Dockerfile in this folder
+    ports:
+      - "3000:3000" # Map port 3000 to host, same as main.py
+    volumes:
+      - http_server_data:/app/storage # Save data.json outside container as per task request
+    container_name: http-server
+volumes:
+  http_server_data: # This should make data.json persist
