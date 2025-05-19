@@ -56,7 +56,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                 with open(storage_path, "r") as file:
                     messages = json.load(file)
             except json.JSONDecodeError:
-                print(f"Warning: Corrupted JSON in {storage_path}, starting fresh.")
+                self.send_error_page()
 
         messages[timestamp] = data
         with open(storage_path, "w") as file:
@@ -70,7 +70,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                 with open(storage_path, "r") as file:
                     messages = json.load(file)
             except json.JSONDecodeError:
-                print(f"Warning: Corrupted JSON in {storage_path}.")
+                self.send_error_page()
 
         content = render_template("read.html", {"messages": messages})
         self.send_response(200)

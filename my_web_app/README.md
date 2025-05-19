@@ -22,7 +22,7 @@ Generate dependencies:
 
 - Opens at http://localhost:3000.
 
-- Stop: docker-compose down.
+- Stop: docker-compose down
 
 ### Remove volume:
 - docker volume rm http_server_data
